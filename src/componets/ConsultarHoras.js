@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import {SafeAreaView, StyleSheet, Text, View, Button, Pressable, Modal,TextInput,ScrollView} from 'react-native'
-const ConsultarHoras = ({modalConVisable,setModalConVisible}) => {
+import {SafeAreaView, StyleSheet, Text, View, Button, Pressable, Modal,TextInput,ScrollView,FlatList} from 'react-native'
+import NewDate from './NewDate'
+const ConsultarHoras = ({modalConVisable,setModalConVisible,newDate}) => {
     
   return (
     <SafeAreaView>
@@ -12,9 +13,27 @@ const ConsultarHoras = ({modalConVisable,setModalConVisible}) => {
                 <Text style={styles.titulo}>Consultar{''}
                 <Text style={styles.tituloBold}>{''} Horas </Text> 
               </Text>
+
+              <View>
+                {newDate.length===0 ?
+                  <Text>No hay nada para consultar</Text>:
+                  <FlatList
+                      data={newDate}
+                      keyExtractor={(item) =>item.id}
+                      renderItem={({item})=>{
+                          return(
+                              <NewDate
+                                  item ={item}
+                              />
+                          )
+                      }}
+                  />
+                  }
+              </View>
+
               <Pressable
                 style={styles.btnNuevaCita}
-                onPress={()=>setModalConVisible(false)}
+                onPress={()=>setModalConVisible(!modalConVisable)}
                 
               >
                 <Text
@@ -35,7 +54,7 @@ const styles = StyleSheet.create({
     contenido: {
       flex: 1,
       backgroundColor: '#6D28D9'
-  
+      
     },
     titulo: {
       fontSize:30,

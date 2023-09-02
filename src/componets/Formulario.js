@@ -7,6 +7,7 @@ const Formulario = ({modalVisible,setModalVisible}) => {
   const[modalRegVisible, setModalRegVisible] = useState (false) 
   const[modalConVisable, setModalConVisible] = useState (false)
   const[modalNVisable, setModalNVisible] = useState (false)
+  const[newDate,setNewDate]=useState([])
   return (
 
       <SafeAreaView style={styles.contenido}>
@@ -70,10 +71,13 @@ const Formulario = ({modalVisible,setModalVisible}) => {
         <RegistrarHoras
             modalRegVisible={modalRegVisible}
             setModalRegVisible={setModalRegVisible}
+            newDate={newDate}
+            setNewDate={setNewDate}
         />
         <ConsultarHoras
           modalConVisable={modalConVisable}
           setModalConVisible={setModalConVisible}
+          newDate={newDate}
         />
         <Novedades
           modalNVisable={modalNVisable}

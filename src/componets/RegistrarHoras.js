@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { SafeAreaView, StyleSheet, Text, View, Button, Pressable, Modal,TextInput,ScrollView,Alert} from 'react-native'
 import DatePicker from 'react-native-date-picker'
-const RegistrarHoras = ({modalRegVisible,setModalRegVisible}) => {
+const RegistrarHoras = ({modalRegVisible,setModalRegVisible,newDate,setNewDate}) => {
   const [date, setDate] = useState(new Date());
   const [user,setUser]=useState('')
   const [email,setEmail]=useState('')
@@ -10,6 +10,13 @@ const RegistrarHoras = ({modalRegVisible,setModalRegVisible}) => {
     if([user,email,date].includes('')){
       Alert.alert("Todos los campos son requeridos")
     }
+    const RegHoras ={
+      id: Date.now(),
+      user,
+      email,
+      date
+    }
+    setNewDate([...newDate,RegHoras])
     setModalRegVisible(!modalRegVisible)
     Alert.alert("Registro Exitoso")
     setUser('')
